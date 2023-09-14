@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Geo POS -  Accounting,  Invoicing  and CRM Application
  * Copyright (c) Rajesh Dukiya. All Rights Reserved
@@ -27,7 +28,7 @@ class Invoices extends CI_Controller
     {
         parent::__construct();
         $this->load->model('invoices_model', 'invocies');
-         $this->load->model('plugins_model', 'plugins');
+        $this->load->model('plugins_model', 'plugins');
         $this->load->library("Aauth");
 
         if (!$this->aauth->is_loggedin()) {
@@ -44,14 +45,13 @@ class Invoices extends CI_Controller
         }
         $this->load->library("Custom");
         $this->li_a = 'sales';
-
     }
 
     //create invoice
     public function create()
     {
 
-         $data['emp'] = $this->plugins->universal_api(69);
+        $data['emp'] = $this->plugins->universal_api(69);
         if ($data['emp']['key1']) {
             $this->load->model('employee_model', 'employee');
             $data['employee'] = $this->employee->list_employee();
@@ -102,8 +102,8 @@ class Invoices extends CI_Controller
         $this->load->library("Common");
         $data['taxlist'] = $this->common->taxlist_edit($data['invoice']['taxstatus']);
 
-         $this->load->library("Common");
-          $data['custom_fields_c'] = $this->custom->add_fields(1);
+        $this->load->library("Common");
+        $data['custom_fields_c'] = $this->custom->add_fields(1);
         $data['custom_fields'] = $this->custom->add_fields(2);
         $data['custom_fields'] = $this->custom->view_edit_fields($tid, 2);
 
@@ -113,7 +113,6 @@ class Invoices extends CI_Controller
         $this->load->view('fixed/header', $head);
         if ($data['invoice']['id']) $this->load->view('invoices/edit', $data);
         $this->load->view('fixed/footer');
-
     }
 
     //invoices list
@@ -135,7 +134,9 @@ class Invoices extends CI_Controller
         $invoicedate = $this->input->post('invoicedate');
         $invocieduedate = $this->input->post('invocieduedate');
         $notes = $this->input->post('notes', true);
+        $invNotes = $this->input->post('invNotes', true);
         $tax = $this->input->post('tax_handle');
+        $defaultStatus = $this->lang->line('New');
         $ship_taxtype = $this->input->post('ship_taxtype');
         $disc_val = numberClean($this->input->post('disc_val'));
         $subtotal = rev_amountExchange_s($this->input->post('subtotal'), $currency, $this->aauth->get_user()->loc);
@@ -157,7 +158,7 @@ class Invoices extends CI_Controller
         }
         if ($customer_id == 0) {
             echo json_encode(array('status' => 'Error', 'message' =>
-                $this->lang->line('Please add a new client')));
+            $this->lang->line('Please add a new client')));
             exit;
         }
 
@@ -184,17 +185,17 @@ class Invoices extends CI_Controller
         $this->db->where('tid', $invocieno);
         $this->db->where('i_class', 0);
         $query = $this->db->get();
-        if(@$query->row()->tid){
+        if (@$query->row()->tid) {
             $this->db->select('tid');
             $this->db->from('geopos_invoices');
             $this->db->order_by('id', 'DESC');
             $this->db->limit(1);
             $this->db->where('i_class', 0);
             $query = $this->db->get();
-            $invocieno=$query->row()->tid+1;
+            $invocieno = $query->row()->tid + 1;
         }
 
-        $data = array('tid' => $invocieno, 'invoicedate' => $bill_date, 'invoiceduedate' => $bill_due_date, 'subtotal' => $subtotal, 'shipping' => $shipping, 'ship_tax' => $shipping_tax, 'ship_tax_type' => $ship_taxtype, 'discount_rate' => $disc_val, 'total' => $total, 'notes' => $notes, 'csd' => $customer_id, 'eid' => $emp, 'taxstatus' => $tax, 'discstatus' => $discstatus, 'format_discount' => $discountFormat, 'refer' => $refer, 'term' => $pterms, 'multi' => $currency, 'loc' => $this->aauth->get_user()->loc);
+        $data = array('tid' => $invocieno, 'invoicedate' => $bill_date, 'invoiceduedate' => $bill_due_date, 'subtotal' => $subtotal, 'shipping' => $shipping, 'ship_tax' => $shipping_tax, 'ship_tax_type' => $ship_taxtype, 'discount_rate' => $disc_val, 'total' => $total, 'notes' => $notes,  'invNotes' => $invNotes, 'csd' => $customer_id, 'eid' => $emp, 'taxstatus' => $tax, 'status' => $defaultStatus, 'discstatus' => $discstatus, 'format_discount' => $discountFormat, 'refer' => $refer, 'term' => $pterms, 'multi' => $currency, 'loc' => $this->aauth->get_user()->loc);
         $invocieno2 = $invocieno;
         if ($this->db->insert('geopos_invoices', $data)) {
             $invocieno = $this->db->insert_id();
@@ -265,52 +266,51 @@ class Invoices extends CI_Controller
                 $this->db->update('geopos_invoices');
             } else {
                 echo json_encode(array('status' => 'Error', 'message' =>
-                    "Please choose product from product list. Go to Item manager section if you have not added the products."));
+                "Please choose product from product list. Go to Item manager section if you have not added the products."));
                 $transok = false;
             }
-            $tnote = '#' . $invocieno . '-' ;
-          $d_trans = $this->plugins->universal_api(69);
-        if ($d_trans['key2']) {
-            $t_data = array(
-            'type' => 'Income',
-            'cat' => 'Sales',
-            'payerid' => $customer_id,
-            'method' => 'Auto',
-            'date' => $bill_date,
-            'eid' =>$emp,
-            'tid' => $invocieno,
-            'loc' =>$this->aauth->get_user()->loc
-        );
+            $tnote = '#' . $invocieno . '-';
+            $d_trans = $this->plugins->universal_api(69);
+            if ($d_trans['key2']) {
+                $t_data = array(
+                    'type' => 'Income',
+                    'cat' => 'Sales',
+                    'payerid' => $customer_id,
+                    'method' => 'Auto',
+                    'date' => $bill_date,
+                    'eid' => $emp,
+                    'tid' => $invocieno,
+                    'loc' => $this->aauth->get_user()->loc
+                );
 
-            $dual = $this->custom->api_config(65);
-            $this->db->select('holder');
-            $this->db->from('geopos_accounts');
-            $this->db->where('id', $dual['key2']);
-            $query = $this->db->get();
-            $account_d = $query->row_array();
-            $t_data['credit'] = 0;
-           $t_data['debit'] = $total;
-           $t_data['type'] = 'Expense';
-            $t_data['acid'] = $dual['key2'];
-            $t_data['account'] = $account_d['holder'];
-            $t_data['note'] = 'Debit ' . $tnote;
+                $dual = $this->custom->api_config(65);
+                $this->db->select('holder');
+                $this->db->from('geopos_accounts');
+                $this->db->where('id', $dual['key2']);
+                $query = $this->db->get();
+                $account_d = $query->row_array();
+                $t_data['credit'] = 0;
+                $t_data['debit'] = $total;
+                $t_data['type'] = 'Expense';
+                $t_data['acid'] = $dual['key2'];
+                $t_data['account'] = $account_d['holder'];
+                $t_data['note'] = 'Debit ' . $tnote;
 
-            $this->db->insert('geopos_transactions', $t_data);
-            //account update
-            $this->db->set('lastbal', "lastbal-$total", FALSE);
-            $this->db->where('id', $dual['key2']);
-            $this->db->update('geopos_accounts');
-
-        }
+                $this->db->insert('geopos_transactions', $t_data);
+                //account update
+                $this->db->set('lastbal', "lastbal-$total", FALSE);
+                $this->db->where('id', $dual['key2']);
+                $this->db->update('geopos_accounts');
+            }
             if ($transok) {
                 $validtoken = hash_hmac('ripemd160', $invocieno, $this->config->item('encryption_key'));
                 $link = base_url('billing/view?id=' . $invocieno . '&token=' . $validtoken);
                 echo json_encode(array('status' => 'Success', 'message' =>
-                    $this->lang->line('Invoice Success') . " <a href='view?id=$invocieno' class='btn btn-primary btn-lg'><span class='fa fa-eye' aria-hidden='true'></span> " . $this->lang->line('View') . "  </a> &nbsp; &nbsp;<a href='printinvoice?id=$invocieno' class='btn btn-blue btn-lg' target='_blank'><span class='fa fa-print' aria-hidden='true'></span> " . $this->lang->line('Print') . "  </a> &nbsp; &nbsp; <a href='$link' class='btn btn-purple btn-lg'><span class='fa fa-globe' aria-hidden='true'></span> " . $this->lang->line('Public View') . " </a> &nbsp; &nbsp; <a href='create' class='btn btn-warning btn-lg'><span class='fa fa-plus-circle' aria-hidden='true'></span></a>"));
+                $this->lang->line('Invoice Success') . " <a href='view?id=$invocieno' class='btn btn-primary btn-lg'><span class='fa fa-eye' aria-hidden='true'></span> " . $this->lang->line('View') . "  </a> &nbsp; &nbsp;<a href='printinvoice?id=$invocieno' class='btn btn-blue btn-lg' target='_blank'><span class='fa fa-print' aria-hidden='true'></span> " . $this->lang->line('Print') . "  </a> &nbsp; &nbsp; <a href='$link' class='btn btn-purple btn-lg'><span class='fa fa-globe' aria-hidden='true'></span> " . $this->lang->line('Public View') . " </a> &nbsp; &nbsp; <a href='create' class='btn btn-warning btn-lg'><span class='fa fa-plus-circle' aria-hidden='true'></span></a>"));
             }
         } else {
             echo json_encode(array('status' => 'Error', 'message' =>
-                "Invalid Entry!"));
+            "Invalid Entry!"));
             $transok = false;
         }
         if ($transok) {
@@ -372,9 +372,7 @@ class Invoices extends CI_Controller
             $this->db->insert('geopos_metadata', $data);
 
             $this->custom->save_fields_data($invocieno, 2);
-
         }
-
     }
 
 
@@ -383,6 +381,8 @@ class Invoices extends CI_Controller
         $list = $this->invocies->get_datatables($this->limited);
         $data = array();
         $no = $this->input->post('start');
+        $invText = $this->lang->line('Invoice Note');
+        $invHTML = "";
         foreach ($list as $invoices) {
             $no++;
             $row = array();
@@ -392,8 +392,16 @@ class Invoices extends CI_Controller
             $row[] = $invoices->name;
             $row[] = dateformat($invoices->invoicedate);
             $row[] = amountExchange($invoices->total, 0, $this->aauth->get_user()->loc);
-            $row[] = '<span class="st-' . $invoices->status . '">' . $this->lang->line(ucwords($invoices->status)) . '</span>';
-            $row[] = '<a href="' . base_url("invoices/view?id=$invoices->id") . '" class="btn btn-success btn-sm" title="View"><i class="fa fa-eye"></i></a>&nbsp;<a href="' . base_url("invoices/printinvoice?id=$invoices->id") . '&d=1" class="btn btn-info btn-sm"  title="Download"><span class="fa fa-download"></span></a> <a href="#" data-object-id="' . $invoices->id . '" class="btn btn-danger btn-sm delete-object"><span class="fa fa-trash"></span></a>';
+            $row[] = '<span class="st-' . $invoices->status . '"> ' . $this->lang->line(ucwords($invoices->status)) . ' </span>';
+            if($invoices->invNotes )
+            {
+                $invHTML = '<br> <b>' . $invText . '</b> : ' . $invoices->invNotes . '';
+            }
+            else
+            {
+                $invHTML = "";
+            }
+            $row[] = '<a href="' . base_url("invoices/view?id=$invoices->id") . '" class="btn btn-success btn-sm" title="View"><i class="fa fa-eye"></i></a>&nbsp;<a href="' . base_url("invoices/printinvoice?id=$invoices->id") . '&d=1" class="btn btn-info btn-sm"  title="Download"><span class="fa fa-download"></span></a> <a href="#" data-object-id="' . $invoices->id . '" class="btn btn-danger btn-sm delete-object"><span class="fa fa-trash"></span></a>' . $invHTML;
             $data[] = $row;
         }
         $output = array(
@@ -409,7 +417,7 @@ class Invoices extends CI_Controller
     public function view()
     {
         $this->load->model('accounts_model');
-        $data['acclist'] = $this->accounts_model->accountslist((integer)$this->aauth->get_user()->loc);
+        $data['acclist'] = $this->accounts_model->accountslist((int)$this->aauth->get_user()->loc);
         $tid = $this->input->get('id');
         $data['invoice'] = $this->invocies->invoice_details($tid, $this->limited);
         $data['attach'] = $this->invocies->attach($tid);
@@ -476,16 +484,15 @@ class Invoices extends CI_Controller
 
             if ($this->invocies->invoice_delete($id, $this->limited)) {
                 echo json_encode(array('status' => 'Success', 'message' =>
-                    $this->lang->line('DELETED')));
+                $this->lang->line('DELETED')));
             } else {
                 echo json_encode(array('status' => 'Error', 'message' =>
-                    $this->lang->line('ERROR')));
+                $this->lang->line('ERROR')));
             }
         } else {
             echo json_encode(array('status' => 'Error', 'message' =>
-                $this->lang->line('ERROR')));
+            $this->lang->line('ERROR')));
         }
-
     }
 
     public function editaction()
@@ -499,6 +506,7 @@ class Invoices extends CI_Controller
         $invoicedate = $this->input->post('invoicedate');
         $invocieduedate = $this->input->post('invocieduedate');
         $notes = $this->input->post('notes', true);
+        $invNotes = $this->input->post('invNotes', true);
         $tax = $this->input->post('tax_handle');
         $ship_taxtype = $this->input->post('ship_taxtype');
         $total_tax = 0;
@@ -526,17 +534,17 @@ class Invoices extends CI_Controller
 
         if ($customer_id == 0) {
             echo json_encode(array('status' => 'Error', 'message' =>
-                $this->lang->line('Please add a new client')));
+            $this->lang->line('Please add a new client')));
             exit;
         }
         $this->db->trans_start();
         $transok = true;
-          $st_c = 0;
-           $this->load->library("Common");
+        $st_c = 0;
+        $this->load->library("Common");
 
         $bill_date = datefordatabase($invoicedate);
         $bill_due_date = datefordatabase($invocieduedate);
-        $data = array('invoicedate' => $bill_date, 'invoiceduedate' => $bill_due_date, 'subtotal' => $subtotal, 'shipping' => $shipping, 'ship_tax' => $shipping_tax, 'ship_tax_type' => $ship_taxtype, 'discount_rate' => $disc_val, 'discount' => $total_discount, 'tax' => $total_tax, 'total' => $total, 'notes' => $notes, 'csd' => $customer_id, 'items' => 0, 'taxstatus' => $tax, 'discstatus' => $discstatus, 'format_discount' => $discountFormat, 'refer' => $refer, 'term' => $pterms, 'multi' => $currency);
+        $data = array('invoicedate' => $bill_date, 'invoiceduedate' => $bill_due_date, 'subtotal' => $subtotal, 'shipping' => $shipping, 'ship_tax' => $shipping_tax, 'ship_tax_type' => $ship_taxtype, 'discount_rate' => $disc_val, 'discount' => $total_discount, 'tax' => $total_tax, 'total' => $total, 'notes' => $notes, 'invNotes' => $invNotes, 'csd' => $customer_id, 'items' => 0, 'taxstatus' => $tax, 'discstatus' => $discstatus, 'format_discount' => $discountFormat, 'refer' => $refer, 'term' => $pterms, 'multi' => $currency);
         $this->db->set($data);
         $this->db->where('id', $iid);
 
@@ -595,7 +603,7 @@ class Invoices extends CI_Controller
                     $this->db->where('pid', $product_id[$key]);
                     $this->db->update('geopos_products');
 
-                                        if (isset($product_alert[$key]) AND (numberClean($product_alert[$key]) - $amt) < 0 and $st_c == 0 and $this->common->zero_stock()) {
+                    if (isset($product_alert[$key]) and (numberClean($product_alert[$key]) - $amt) < 0 and $st_c == 0 and $this->common->zero_stock()) {
                         echo json_encode(array('status' => 'Error', 'message' => 'Product - <strong>' . $product_name1[$key] . "</strong> - Low quantity. Available stock is  " . $product_alert[$key]));
                         $transok = false;
                         $st_c = 1;
@@ -614,10 +622,10 @@ class Invoices extends CI_Controller
                 $this->db->set(array('discount' => rev_amountExchange_s(amountFormat_general($total_discount), $currency, $this->aauth->get_user()->loc), 'tax' => rev_amountExchange_s(amountFormat_general($total_tax), $currency, $this->aauth->get_user()->loc), 'items' => $itc));
                 $this->db->where('id', $iid);
                 $this->db->update('geopos_invoices');
-         if($transok)    echo json_encode(array('status' => 'Success', 'message' => $this->lang->line('Invoice has  been updated') . " <a href='view?id=$iid' class='btn btn-info btn-lg'><span class='fa fa-eye' aria-hidden='true'></span> " . $this->lang->line('View') . " </a> "));
+                if ($transok)    echo json_encode(array('status' => 'Success', 'message' => $this->lang->line('Invoice has  been updated') . " <a href='view?id=$iid' class='btn btn-info btn-lg'><span class='fa fa-eye' aria-hidden='true'></span> " . $this->lang->line('View') . " </a> "));
             } else {
                 echo json_encode(array('status' => 'Error', 'message' =>
-                    $this->lang->line('ERROR')));
+                $this->lang->line('ERROR')));
                 $transok = false;
             }
 
@@ -634,10 +642,9 @@ class Invoices extends CI_Controller
                 }
             }
         } else {
-                if($transok)   echo json_encode(array('status' => 'Error', 'message' =>
-                "Please add at least one product in invoice"));
+            if ($transok)   echo json_encode(array('status' => 'Error', 'message' =>
+            "Please add at least one product in invoice"));
             $transok = false;
-
         }
 
 
@@ -662,7 +669,7 @@ class Invoices extends CI_Controller
 
             $t_profit += $s_cost - $t_cost;
         }
-       $this->db->trans_start();
+        $this->db->trans_start();
         $this->db->set('col1', $t_profit);
         $this->db->where('type', 9);
         $this->db->where('rid', $iid);
@@ -679,7 +686,7 @@ class Invoices extends CI_Controller
         $this->db->update('geopos_invoices');
 
         echo json_encode(array('status' => 'Success', 'message' =>
-            $this->lang->line('UPDATED'), 'pstatus' => $status));
+        $this->lang->line('UPDATED'), 'pstatus' => $status));
     }
 
 
@@ -707,7 +714,6 @@ class Invoices extends CI_Controller
 
         $this->load->model('customers_model', 'customers');
         $this->customers->add($name, $company, $phone, $email, $address, $city, $region, $country, $postbox, $customergroup, $taxid, $name_s, $phone_s, $email_s, $address_s, $city_s, $region_s, $country_s, $postbox_s);
-
     }
 
     public function file_handling()
@@ -729,8 +735,6 @@ class Invoices extends CI_Controller
                 $this->invocies->meta_insert($id, 1, $files);
             }
         }
-
-
     }
 
     public function delivery()
@@ -763,8 +767,6 @@ class Invoices extends CI_Controller
         } else {
             $pdf->Output('DO_#' . $data['invoice']['tid'] . '.pdf', 'I');
         }
-
-
     }
 
     public function proforma()
@@ -789,8 +791,6 @@ class Invoices extends CI_Controller
         } else {
             $pdf->Output('Proforma_#' . $data['invoice']['tid'] . '.pdf', 'I');
         }
-
-
     }
 
 
@@ -884,9 +884,5 @@ class Invoices extends CI_Controller
         } else {
             $pdf->Output('Trans_#' . $id . '.pdf', 'I');
         }
-
-
     }
-
-
 }

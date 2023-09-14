@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "Cài đặt POS";
 $lang['AllowAssignEmployee'] = "Cho phép phân công nhân viên";
 $lang['SelfCustomerRegistration'] = "Khách hàng tự đăng ký";
 $lang['Register Customer'] = "Đăng ký khách hàng";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

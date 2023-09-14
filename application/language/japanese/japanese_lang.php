@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "POS設定";
 $lang['AllowAssignEmployee'] = "従業員の割り当てを許可";
 $lang['SelfCustomerRegistration'] = "顧客の自己登録";
 $lang['Register Customer'] = "顧客を登録";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

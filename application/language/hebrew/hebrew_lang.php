@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "הגדרות קופה";
 $lang['AllowAssignEmployee'] = "אפשר להקצות עובד";
 $lang['SelfCustomerRegistration'] = "הרשמה עצמית של לקוח";
 $lang['Register Customer'] = "רישום לקוח";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

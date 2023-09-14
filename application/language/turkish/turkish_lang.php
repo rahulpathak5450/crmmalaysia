@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "POS Ayarları";
 $lang['AllowAssignEmployee'] = "Çalışan Atamasına İzin Ver";
 $lang['SelfCustomerRegistration'] = "Müşteri Kendi Kendine Kayıt";
 $lang['Register Customer'] = "Müşteri Kaydı";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

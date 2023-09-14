@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "Pengaturan POS";
 $lang['AllowAssignEmployee'] = "Izinkan untuk Menetapkan Karyawan";
 $lang['SelfCustomerRegistration'] = "Registrasi Mandiri Pelanggan";
 $lang['Register Customer'] = "Daftarkan Pelanggan";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

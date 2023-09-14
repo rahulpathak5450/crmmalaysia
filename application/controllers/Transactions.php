@@ -186,7 +186,7 @@ class Transactions extends CI_Controller
             }
             $this->db->set('pmethod', $pmethod);
             $this->db->set('pamnt', "pamnt+$totalrm", FALSE);
-            $this->db->set('status', 'paid');
+            $this->db->set('status', 'fullpayment');
             $this->db->where('id', $tid);
             $this->db->update('geopos_invoices');
             //account update

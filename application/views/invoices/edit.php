@@ -181,7 +181,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="toAddInfo"
-                                                   class="caption"><?php echo $this->lang->line('Invoice Note') ?></label>
+                                                   class="caption"><?php echo $this->lang->line('Note') ?></label>
                                             <textarea class="form-control round" name="notes"
                                                       rows="2"><?php echo $invoice['notes'] ?></textarea></div>
                                     </div>
@@ -256,7 +256,12 @@
                                     </td>
                                     <td colspan="7"></td>
                                 </tr>
-
+                                <tr class="sub_c" style="display: table-row;">
+                                    <td colspan="8" align="left">
+                                        <?php echo $this->lang->line('Invoice Note') ?>
+                                        <textarea class="form-control round" name="invNotes" rows="10"></textarea>
+                                    </td>
+                                </tr>
                                 <tr class="sub_c" style="display: table-row;">
                                     <td colspan="6" class="reverse_align"><input type="hidden"
                                                                          value="<?php echo edit_amountExchange_s($invoice['subtotal'], $invoice['multi'], $this->aauth->get_user()->loc) ?>"
@@ -298,7 +303,8 @@
                                 </tr>
 
                                 <tr class="sub_c" style="display: table-row;">
-                                    <td colspan="2"><?php if ($exchange['active'] == 1){
+                                    <td colspan="2">
+                                        <?php if ($exchange['active'] == 1){
                                         echo $this->lang->line('Payment Currency client') . ' <small>' . $this->lang->line('based on live market') ?></small>
                                         <select name="mcurrency"
                                                 class="selectpicker form-control">
@@ -310,12 +316,14 @@
                                                 echo '<option value="' . $row['id'] . '">' . $row['symbol'] . ' (' . $row['code'] . ')</option>';
                                             } ?>
 
-                                        </select><?php } ?></td>
+                                        </select><?php } ?>
+                                    </td>
                                     <td colspan="4" class="reverse_align"><strong><?php echo $this->lang->line('Grand Total') ?>
                                             (<span
                                                     class="currenty lightMode"><?php echo $this->config->item('currency'); ?></span>)</strong>
                                     </td>
-                                    <td align="left" colspan="2"><input type="text" name="total" class="form-control"
+                                    <td align="left" colspan="2">
+                                        <input type="text" name="total" class="form-control"
                                                                         id="invoiceyoghtml"
                                                                         value="<?= edit_amountExchange_s($invoice['total'], $invoice['multi'], $this->aauth->get_user()->loc); ?>"
                                                                         readonly="">
@@ -666,13 +674,25 @@
                 </div>
             </div>
         </div>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<script type="text/javascript"> 
 
-        <script type="text/javascript"> $('.editdate').datepicker({
-                autoHide: true,
-                format: '<?php echo $this->config->item('dformat2'); ?>'
-            });
+$('.editdate').datepicker({
+        autoHide: true,
+        format: '<?php echo $this->config->item('dformat2'); ?>'
+});
 
-            window.onload = function () {
-                billUpyog();
-            };
-        </script>
+window.onload = function () {
+    billUpyog();
+};
+$(document).ready(function ()
+{
+    $('textarea[name=invNotes]').summernote({
+        height:200
+    });
+    $('.note-btn').removeAttr('title');
+    $("textarea[name=invNotes]").summernote("code", '<?php echo $invoice['invNotes'] ?>');
+});
+</script>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">

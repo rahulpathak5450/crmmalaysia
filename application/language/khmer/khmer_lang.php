@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "ការកំណត់ម៉ាស៊ីនឆូត�
 $lang['AllowAssignEmployee'] = "អនុញ្ញាតឱ្យចាត់ចែងនិយោជិក";
 $lang['SelfCustomerRegistration'] = "ការចុះឈ្មោះដោយខ្លួនឯងរបស់អតិថិជន";
 $lang['Register Customer'] = "ចុះឈ្មោះអតិថិជន";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

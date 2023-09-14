@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "POS 설정";
 $lang['AllowAssignEmployee'] = "직원 할당 허용";
 $lang['SelfCustomerRegistration'] = "고객 자체 등록";
 $lang['Register Customer'] = "고객 등록";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

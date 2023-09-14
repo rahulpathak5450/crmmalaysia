@@ -218,6 +218,9 @@
                                         <code>
                                             <?php echo $invoice['notes'] ?>
                                         </code>
+                                        
+                                        <p class="lead mt-1"><br><?php echo $this->lang->line('Invoice Note') ?>:</p>
+                                            <?php echo $invoice['invNotes'] ?>
                                     </div>
                                 </div>
                             </div>

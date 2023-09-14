@@ -1,3 +1,14 @@
+<style>
+    @media (max-width: 991.98px)
+{
+    .dataTables_wrapper table {
+    display: block;
+    width: 100% !important;
+    min-height: .01%;
+    overflow-x: auto;
+}
+}
+</style>
 <div class="content-body">
     <div class="card">
         <div class="card-header">
@@ -39,7 +50,7 @@
 
                 </div>
                 <hr>
-                <table id="invoices" class="table table-striped table-bordered zero-configuration ">
+                <table id="invoices" class="table table-striped table-bordered zero-configuration" >
                     <thead>
                     <tr>
                         <th><?php echo $this->lang->line('No') ?></th>

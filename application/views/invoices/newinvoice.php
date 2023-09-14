@@ -150,7 +150,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12">
                                         <label for="toAddInfo"
-                                               class="caption"><?php echo $this->lang->line('Invoice Note') ?></label>
+                                               class="caption"><?php echo $this->lang->line('Note') ?></label>
                                         <textarea class="form-control round" name="notes" rows="2"></textarea></div>
                                 </div>
 
@@ -227,14 +227,20 @@
                                 </td>
                                 <td colspan="7"></td>
                             </tr>
-
                             <tr class="sub_c" style="display: table-row;">
-                                <td colspan="6" class="reverse_align"><input type="hidden" value="0" id="subttlform"
-                                                                     name="subtotal"><strong><?php echo $this->lang->line('Total Tax') ?></strong>
+                                <td colspan="8" align="left">
+                                    <?php echo $this->lang->line('Invoice Note') ?>
+                                    <textarea class="form-control round" name="invNotes" rows="5"></textarea>
                                 </td>
-                                <td align="left" colspan="2"><span
-                                            class="currenty lightMode"><?= $this->config->item('currency'); ?></span>
-                                    <span id="taxr" class="lightMode">0</span></td>
+                            </tr>
+                            <tr class="sub_c" style="display: table-row;">
+                                <td colspan="6" class="reverse_align">
+                                    <input type="hidden" value="0" id="subttlform" name="subtotal"><strong><?php echo $this->lang->line('Total Tax') ?></strong>
+                                </td>
+                                <td align="left" colspan="2">
+                                    <span class="currenty lightMode"><?= $this->config->item('currency'); ?></span>
+                                    <span id="taxr" class="lightMode">0</span>
+                                </td>
                             </tr>
                             <tr class="sub_c" style="display: table-row;">
                                 <td colspan="6" class="reverse_align">
@@ -623,3 +629,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<script>
+   $(document).ready(function ()
+{
+    $('textarea[name=invNotes]').summernote({
+        height:80
+    });
+    $('.note-btn').removeAttr('title');
+    
+});
+
+</script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">

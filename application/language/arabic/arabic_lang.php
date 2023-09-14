@@ -920,3 +920,11 @@ $lang['POS_Settings'] = "إعدادات نقطة البيع";
 $lang['AllowAssignEmployee'] = "السماح بتعيين الموظف";
 $lang['SelfCustomerRegistration'] = "التسجيل الذاتي للعملاء";
 $lang['Register Customer'] = "تسجيل العميل";
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

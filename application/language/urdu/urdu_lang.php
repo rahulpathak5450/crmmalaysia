@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "POS کی ترتیبات";
 $lang['AllowAssignEmployee'] = "ملازم تفویض کرنے کی اجازت دیں";
 $lang['SelfCustomerRegistration'] = "کسٹمر سیلف رجسٹریشن";
 $lang['Register Customer'] = "رجسٹر کسٹمر";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

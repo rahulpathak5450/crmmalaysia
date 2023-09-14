@@ -920,3 +920,11 @@ $lang['POS_Settings'] = "पीओएस सेटिंग्स";
 $lang['AllowAssignEmployee'] = "कर्मचारी को असाइन करने की अनुमति दें";
 $lang['SelfCustomerRegistration'] = "ग्राहक स्व पंजीकरण";
 $lang['Register Customer'] = "ग्राहक रजिस्टर करें";
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

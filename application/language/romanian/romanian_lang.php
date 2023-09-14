@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "Setări POS";
 $lang['AllowAssignEmployee'] = "Permiteți alocarea unui angajat";
 $lang['SelfCustomerRegistration'] = "Înregistrarea de sine a clienților";
 $lang['Register Customer'] = "Înregistrați clientul";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

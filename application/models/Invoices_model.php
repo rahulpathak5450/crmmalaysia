@@ -229,7 +229,7 @@ class Invoices_model extends CI_Model
 
     private function _get_datatables_query($opt = '')
     {
-        $this->db->select('geopos_invoices.id,geopos_invoices.tid,geopos_invoices.invoicedate,geopos_invoices.invoiceduedate,geopos_invoices.total,geopos_invoices.status,geopos_customers.name');
+        $this->db->select('geopos_invoices.id,geopos_invoices.invNotes,geopos_invoices.tid,geopos_invoices.invoicedate,geopos_invoices.invoiceduedate,geopos_invoices.total,geopos_invoices.status,geopos_customers.name');
         $this->db->from($this->table);
         $this->db->where('geopos_invoices.i_class', 0);
         if ($opt) {

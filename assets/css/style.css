@@ -1,6 +1,6 @@
 /* port from old*/
 .uline { text-decoration:line-through;}
-.st-paid, .st-due, .st-partial, .st-canceled,.st-rejected,.st-pending,.st-accepted .st-Recurring,.st-Stopped
+.st-paid, .st-due, .st-partial, .st-canceled,.st-rejected,.st-pending,.st-accepted .st-Recurring,.st-Stopped,.st-new,.st-proceed,.st-checking,.st-printing,.st-pickedup,.st-reject,.st-collected,.st-fullpayment
 {
 text-transform: capitalize;
     color: #fff;
@@ -9,25 +9,25 @@ text-transform: capitalize;
     font-size: 10px;
 }
 
-.st-paid,.st-accepted
+.st-paid,.st-accepted,.st-collected,.st-fullpayment
 {
  background-color: #5ed45e;
 }
 
-.st-due,.st-Stopped
+.st-due,.st-Stopped,.st-new
 {
  background-color: #ff6262;
 }
 
-.st-partial,.st-pending,.st-Recurring
+.st-partial,.st-pending,.st-Recurring,.st-proceed,.st-checking
 {
  background-color: #5da6fb;
 }
-.st-customer_approved
+.st-customer_approved,.st-printing,.st-pickedup
 {
  background-color: #845dfb;
 }
-.st-canceled,.st-rejected
+.st-canceled,.st-rejected,.st-reject
 {
  background-color: #848030;
 }

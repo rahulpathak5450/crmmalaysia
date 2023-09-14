@@ -280,6 +280,9 @@
                                     <code>
                                         <?php echo $invoice['notes'] ?>
                                     </code>
+
+                                    <p class="lead mt-1"><br><?php echo $this->lang->line('Invoice Note') ?>:</p>
+                                        <?php echo $invoice['invNotes'] ?>
                                 </div>
                             </div>
                         </div>
@@ -782,11 +785,15 @@
                         <div class="col mb-1"><label
                                     for="pmethod"><?php echo $this->lang->line('Mark As') ?></label>
                             <select name="status" class="form-control mb-1">
-                                <option value="paid"><?php echo $this->lang->line('Paid'); ?></option>
-                                <option value="due"><?php echo $this->lang->line('Due'); ?></option>
-                                <option value="partial"><?php echo $this->lang->line('Partial'); ?></option>
+                                <option value="new"><?php echo $this->lang->line('New'); ?></option>
+                                <option value="proceed"><?php echo $this->lang->line('Proceed'); ?></option>
+                                <option value="checking"><?php echo $this->lang->line('Checking'); ?></option>
+                                <option value="reject"><?php echo $this->lang->line('Reject'); ?></option>
+                                <option value="printing"><?php echo $this->lang->line('Printing'); ?></option>
+                                <option value="pickedup"><?php echo $this->lang->line('Pickedup'); ?></option>
+                                <option value="collected"><?php echo $this->lang->line('Collected'); ?></option>
                             </select>
-
+                            <!-- New , Proceed,Checking,Reject,Printing,Picked UP, Collected -->
                         </div>
                     </div>
 

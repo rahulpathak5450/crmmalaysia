@@ -920,3 +920,12 @@ $lang['POS_Settings'] = "POS-instellingen";
 $lang['AllowAssignEmployee'] = "Toestaan om werknemer toe te wijzen";
 $lang['SelfCustomerRegistration'] = "Zelfregistratie door de klant";
 $lang['Register Customer'] = "Klant registreren";
+
+
+
+$lang['Proceed'] = "Proceed";
+$lang['Checking'] = "Checking";
+$lang['Printing'] = "Printing";
+$lang['Pickedup'] = "PickedUp";
+$lang['Collected'] = "Collected";
+$lang['Fullpayment'] = "FullPayment";

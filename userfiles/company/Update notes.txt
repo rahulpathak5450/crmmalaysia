@@ -1,0 +1,2 @@
+1) remove origin picture and replace with company name.png for logo and default 
+2) Doesnt change in thumbnail yet

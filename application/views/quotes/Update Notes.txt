@@ -1,0 +1,3 @@
+Create two header 
+1) Remove EMAIL and SMS, POS Print button in view
+2) - Sign is original header , keep for code resources

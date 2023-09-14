@@ -1,0 +1,2 @@
+1) add white design in add new transaction
+2) Change payer to description in index 

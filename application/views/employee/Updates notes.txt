@@ -1,0 +1,2 @@
+1) Remove small required in username on add file
+2) Change search payer to search employee in payrol create 

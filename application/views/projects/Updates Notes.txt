@@ -1,0 +1,2 @@
+1) Change Design in add project to white rounded
+2) Remove required to phase and tags in add project

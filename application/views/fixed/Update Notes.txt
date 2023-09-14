@@ -1,0 +1,12 @@
+Create two header 
+1) With pos button
+2) No pos button and remove pos invoice fro sales modules
+3) Header bg is white and remove unuse admin setting
+4) remove promo code from modules
+5) Remove message and pending task notification in header
+6) remove user profile page from account panel in dashboard because of bug"
+7) Remove admin setting-template-theme (place to change theme and logo)
+8) remove support ticket modules under crm
+9) Remove business register under data&report
+10) remove database backup under export modules
+3) - Sign is original header , keep for code resources

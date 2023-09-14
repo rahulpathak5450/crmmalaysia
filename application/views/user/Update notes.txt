@@ -1,0 +1,2 @@
+1) remove user in account profile tab on dashboard
+2) Remove crm button in index(login page)

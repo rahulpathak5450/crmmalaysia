@@ -1,0 +1,5 @@
+Create two header 
+1) Remove EMAIL and SMS button in clist 
+2) Remove required email in create 
+3) Remove required email in edit
+3) - Sign is original header , keep for code resources

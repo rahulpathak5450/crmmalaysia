@@ -1,0 +1,4 @@
+1) Replace favicon with gato favicon
+2) Replace 32size favicon with gato favicon
+3) Put apple origin favicon in update files 
+4) - is sign origin favicon

@@ -393,6 +393,7 @@ class Invoices extends CI_Controller
             $row[] = dateformat($invoices->invoicedate);
             $row[] = amountExchange($invoices->total, 0, $this->aauth->get_user()->loc);
             $row[] = '<span class="st-' . $invoices->status . '"> ' . $this->lang->line(ucwords($invoices->status)) . ' </span>';
+            $row[] = '<span class="st-' . $invoices->paymentStatus . '"> ' . $this->lang->line(ucwords($invoices->paymentStatus)) . ' </span>';
             if($invoices->invNotes )
             {
                 $invHTML = '<br> <b>' . $invText . '</b> : ' . $invoices->invNotes . '';
